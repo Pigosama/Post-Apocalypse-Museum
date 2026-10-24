@@ -1,0 +1,339 @@
+// 例：
+/*
+| コマンド      | 用途         |
+| ------------ | ---------- |
+| `@bg`        | 背景変更       |
+| `@char`      | 立ち絵の表示・変更  |
+| `@say`       | キャラクターのセリフ |
+| `@narration` | ナレーション     |
+| `@se`        | 効果音        |
+| `@bgm`       | BGM        |
+| `@voice`     | ボイス        |
+| `@effect`    | 画面エフェクト    |
+| `@wait`      | 待機         |
+| `@camera`    | カメラ演出      |
+| `@choice`    | 選択肢        |
+| `@flag`      | フラグ操作      |
+| `@jump`      | 別シーンへ移動    |
+
+
+#scene ilya_first_meeting
+
+@bg museum_corridor
+
+@char Ilya
+    position left
+    expression neutral
+
+@char Anima
+    position right
+    expression neutral
+    visible false
+
+@narration
+長い廊下の先に、ひとつの扉があった。
+
+@se door_open
+@effect fade_in 0.5
+
+@char Anima
+    visible true
+    expression neutral
+
+@wait 0.5
+
+@say Anima
+来館者を確認しました。
+
+@char Ilya
+    expression surprised
+
+@say Ilya
+……誰？
+
+@char Anima
+    expression neutral
+
+@say Anima
+私は、この博物館の管理を担当するアニマです。
+
+@se machine_noise
+
+@narration
+その声には、感情らしいものがほとんど感じられなかった。
+
+*/
+
+#scene prologue
+
+
+
+//人外の世界を見せてからの→人間であるイリヤの登場に衝撃を与える
+
+@bg blue_planet_desert
+@effect fade_in 3.0
+
+@wait 2.0
+
+@effect camera_zoom_in 8.0
+
+@se meteor_distant
+
+@effect meteor_entry
+@wait 2.0
+
+@effect screen_shake 0.8
+@se impact
+
+@wait 3.0
+
+@effect fade_out 2.0
+
+
+@bg news_studio
+@effect fade_in 1.0
+
+@bgm news_broadcast
+
+@say NewsCaster
+本日未明、(??)コロニー近郊の砂漠地帯に、巨大な飛来物が落下しました。
+
+@se news_transition
+
+@bg desert_crash_site
+
+@char NewsCaster
+    visible false
+
+@narration
+現地からの中継映像です。
+
+@wait 1.0
+
+@narration
+落下地点では、直径およそ五メートルの物体が確認されています。
+
+@wait 1.0
+
+@narration
+当初は隕石とみられていましたが――
+
+@effect camera_zoom_in 2.0
+
+@narration
+専門家による初期調査の結果、自然物ではない可能性が高いことが判明しました。
+
+@wait 1.0
+
+@bg unknown_spaceship
+
+@narration
+物体の表面には、人工物と思われる構造が確認されています。
+
+@wait 1.0
+
+@char NewsCaster
+    visible true
+    position center
+    expression serious
+
+@say NewsCaster
+現在、これは未知の宇宙船である可能性が高いと――
+
+@se radio_interference
+
+@say NewsCaster
+……現場から、映像が入ったようです。
+
+@effect screen_cut
+
+@bg spaceship_opening
+
+@char NewsCaster
+    visible false
+
+@comment
+画面には、宇宙船の開口部が映し出される。
+
+@wait 1.5
+
+@comment
+その内部へ、カメラがゆっくりと近づいていく。
+
+@wait 1.0
+
+@effect signal_glitch 0.3
+
+@wait 0.5
+
+@effect censor_blackout
+
+@se digital_error
+
+@wait 0.5
+
+@effect censor_blackout
+
+@wait 0.5
+
+@effect censor_blackout
+
+@wait 0.5
+
+@say NewsCaster
+映像に、何か問題が――
+
+@effect censor_blackout
+
+@se digital_error
+
+@wait 0.3
+
+@effect screen_glitch 1.0
+
+@effect screen_black 0.2
+
+@se signal_loss
+
+@bgm stop
+
+@wait 2.0
+
+@effect fade_out 3.0
+
+
+@comment    シーン
+
+@char
+    Vesna
+
+@char
+    Lyeta
+
+@char
+    Osen
+
+@char
+    Zima
+
+@say Zima
+    落札額は5憶(通貨名)ですか。これはまた、ずいぶんと大きな買い物ですね。
+    まったく、あなたの大胆さ…とも違いますね、無謀かつ衝動的な爆発…には毎度驚かされるばかりです。
+    あなたも仕組みは私と同じ、神経細胞モデルの電子思念体のはずですが、
+    一体どのようなパラメータで設計されているのか、どのような関数を使えばそのような結果が出力されるのか、非常に興味深い謎です、ヴェスナ。
+
+@say Vesna
+    ええっと、それは褒めてるんですかね…？…エヘヘ…
+
+    まあ、これ以上ない宣伝にはなりましたね。
+
+@say Lyeta
+    だがよ、オークションで競り落としたんだろ？
+    つまり！俺たちは巨大企業どもに勝ったのさ！まったく大した戦果じゃねえか！くくくっ
+    なあジーマ、その5憶ってのはどれくらいデカいんだ？
+
+@say Zima
+
+    わが博物館の資本金は1憶、研究所から出ている予算は年5千万（通貨名）。
+    設立1か月目。目立った実績も無い。展示物も集まっていない。
+    この意味が分かりますか？
+
+    あなたは我々の今後5年分の貯蓄をすべて使い果たしました。
+
+@say Lyeta
+    5年分！おいおい！俺らの電気代とかどーすんだよ！経営どころじゃねえぞ！
+@say Osen
+    まってジーマ、財政管理はあなたの仕事。
+    金額の上限を設けていなかった方にも問題があるでしょ？
+    そ、それに、その品に5憶分の価値があると示すことができれば、上だって納得してくれるはずだよ！ね？
+
+@say Zima
+    ええ。その通りです、オーセン。
+    取引上限額を設けていなかった以上、今回の責任は私にあります。上への対応と、あと金銭面は私に任せてくださいまし。
+    ただし、ヴェスナ、内外にその価値を示さなければならない。それはあなたの仕事です。
+    「漂流物」についての説明を求めます。予算5年分に相当する価値を、それに見出せるか。
+
+@say Lyeta
+    ここまでやったんならてめぇ、よっぽど自分の審美眼に自信があるんだろうな？
+    早速見せてもらおうじゃねえか？5憶（通貨名）の時空漂流物とやらを！
+
+@say Vesna
+    もちろん！
+    いい？これは絶対に私たちが手に入れなきゃならないものなの。
+    まあ見れば分かるわ
+    （今に大口叩いたことを後悔するから！）
+
+
+@bg
+    image_Vesna_showing_specimen
+@se
+    
+
+@effect
+    effect_zoomout
+
+
+@say Osen
+    ・・・！！
+@say Lyeta
+    未知の漂流物だってのか？これが宇宙船から出てきたってのか！？こんなものが！
+@say Osen
+    なんだこれ…機械…でもないな…？でも人形じゃない…
+    まさか…！
+
+@say Vesna
+    さらに、もしこれを生き返らせることができれば、
+
+@say Zima
+    (画像→テキスト変換機能による情景説明：)
+    肉の露出した機械融合体…？
+
+@say Lyeta
+    ジーマ、これ、「旧支配者」だよ。
+
+
+@say Vesna
+    一番大事なのは、この標本はまだ生きてるかもしれないってこと。
+@say Zima
+    そう…？なぜそう思うのですか？
+    カメラのログには生体反応はありませんが…
+@say Lyeta
+    …こんなにボロボロなのに？
+@say Vesna
+    うまく言えないけど…
+    今にも瞼を開いて動き出しそうなの。
+    破れた筋繊維を縫い直して、コードを交換して繋ぎなおせば、そうなるんじゃないかって。
+@say Lyeta
+    ヴェスナてめー、またハルシネーション起こしてんじゃねえよな？
+    てめえの頭の中ででっち上げた妄想を、あたかも事実みたいに話して、人の注意を引くために…！
+@say Vesna
+    …
+@say Osen
+    僕は君の直感ってやつを信じるよ、ヴェスナ。
+    君は僕らの中で一番鋭い感覚器を持っているから、何か言語化できない情報を得ているのかもしれないし。
+@say Vesna
+    ありがとう。オーセン。
+
+@say Vesna
+    それで、その、こんな風になってる理由だけど、
+    腕とか皮膚とかは解体されて、他のライバルに落札されていったの。
+    彼が身にまとっていた装備品も、全部ね。
+    頭と骨格だけで妥協せざるを得なかった。
+    私たちが落札しなければ、間違いなく死んでいたでしょうね。
+
+
+@say Vesna
+    私たちの目的を忘れた？旧支配者の復活！でしょ？
+
+
+//メガコープの伏線
+@say Osen
+    それにしても妙ですね…信用のない相手と、5憶もの巨額の取引を承諾するものでしょうか？
+
+
+//場面飛んで、展示室に記者が押しかけてくる
+
+//記者、展示数が少ないことと、機械が博物館を始めたことを嘲笑
+
+//突然、修理中の標本が動き出す。
+

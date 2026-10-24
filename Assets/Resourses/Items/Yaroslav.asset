@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ab8c4a999313a46b7bf169291bd18e, type: 3}
+  m_Name: Yaroslav
+  m_EditorClassIdentifier: Assembly-CSharp::PlaceableItemData
+  itemID: YaroslavBeforeBleach_Display
+  itemName: "\u7FA9\u4F53\u306E\u5B87\u5B99\u98DB\u884C\u58EB\u306E\u5168\u8EAB\u6A19\u672C"
+  description: "\u5730\u4E0A\u306B\u964D\u3063\u3066\u304D\u305F\u30DD\u30C3\u30C9\u306E\u4E2D\u3067\u7720\u3063\u3066\u3044\u305F\u5B87\u5B99\u98DB\u884C\u58EB\u3067\u3059\u3002"
+  placementSize:
+  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  maxStackSize: 1
+  itemIcon: {fileID: -7679944087948563305, guid: 274344cb6c5b39c4491631958ec2c463, type: 3}
+  itemSprite: {fileID: -7679944087948563305, guid: 274344cb6c5b39c4491631958ec2c463, type: 3}
+  placePrefab: {fileID: 4853362622435616033, guid: 8f83607f7efd0754699101860361eddc, type: 3}

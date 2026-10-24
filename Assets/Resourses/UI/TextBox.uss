@@ -1,0 +1,8 @@
+.Textbox {
+    aspect-ratio: 1;
+    align-self: center;
+    min-height: 64px;
+    min-width: auto;
+    width: auto;
+    height: 100%;
+}

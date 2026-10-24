@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resourses/UI/TextBox.uss?fileID=7433441132597879392&amp;guid=190d0e35065f3a64bae4151b0d4e7e81&amp;type=3#TextBox"/>
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; align-content: auto; flex-direction: column-reverse;">
+        <ui:VisualElement name="Textbox" style="flex-grow: initial; height: 250px; align-self: stretch; align-items: flex-start; background-color: rgb(210, 182, 182); flex-shrink: initial; flex-direction: row; bottom: 0%; position: relative; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; align-content: flex-start;">
+            <ui:VisualElement name="Graphic" class="Textbox" style="background-color: rgb(81, 98, 125); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-left-color: rgb(139, 0, 0); border-right-color: rgb(139, 0, 0); border-top-color: rgb(139, 0, 0); border-bottom-color: rgb(139, 0, 0);"/>
+            <ui:Label text="Label" name="Label" style="-unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=a0f4e0f49b9f95c44bcb86b230df948b&amp;type=3#NotInter-Regular&quot;); font-size: 50px; -unity-font-style: bold; translate: 15px 0;"/>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="MenuButton" style="flex-grow: 0; flex-shrink: 0; background-color: rgba(176, 48, 96, 0.447); width: 100px; height: 100px; transform-origin: left top; top: 0; left: 0;"/>
+            <ui:VisualElement name="SettingsButton" style="flex-grow: 0; flex-shrink: 0; background-color: rgba(0, 70, 255, 0.38); width: 100px; height: 100px; transform-origin: left top; top: 0; left: 0; translate: 10px 0;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

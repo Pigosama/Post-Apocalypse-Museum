@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d309276c03abd409bf5fda12e533dc, type: 3}
+  m_Name: Elevator_Template
+  m_EditorClassIdentifier: Assembly-CSharp::RoomTemplateData
+  templateId: Room_ServiceElevator
+  displayName: "\u30A8\u30EC\u30D9\u30FC\u30BF\u5BA4"
+  category: 2
+  size: {x: 4, y: 5}
+  roomPrefab: {fileID: 1802119976255160974, guid: 77ef848acecd0374cbcbb8ea52de55b4, type: 3}
+  capacity: 0
+  upgradeTarget: {fileID: 0}

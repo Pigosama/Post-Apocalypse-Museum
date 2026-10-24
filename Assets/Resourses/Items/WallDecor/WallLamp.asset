@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ab8c4a999313a46b7bf169291bd18e, type: 3}
+  m_Name: WallLamp
+  m_EditorClassIdentifier: Assembly-CSharp::PlaceableItemData
+  itemId: Wall_Lamp_Default
+  itemName: "\u58C1\u639B\u3051\u96FB\u706F"
+  description: "\u6D88\u8CBB\u96FB\u529B:20W"
+  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  maxStackSize: 99
+  layer: 1
+  floorWidth: 1
+  wallFootprint:
+  - {x: 0, y: 0}
+  placePrefab: {fileID: 4853362622435616033, guid: 8f83607f7efd0754699101860361eddc, type: 3}
+  itemSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

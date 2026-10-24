@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d309276c03abd409bf5fda12e533dc, type: 3}
+  m_Name: Room_A_Template
+  m_EditorClassIdentifier: Assembly-CSharp::RoomTemplateData
+  templateId: RoomA
+  displayName: "\u5C0F\u3055\u3044\u90E8\u5C4B"
+  category: 1
+  size: {x: 6, y: 6}
+  roomPrefab: {fileID: 1802119976255160974, guid: 5dff81f228a355c4785695892a65e952, type: 3}
+  capacity: 0
+  upgradeTarget: {fileID: 0}
