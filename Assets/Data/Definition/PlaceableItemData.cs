@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum FurnitureLayer { Floor, Wall }
+public enum FurnitureLayer { Floor, Wall, Equipment }
 
 [CreateAssetMenu(fileName = "PlaceableItemData", menuName = "Scriptable Objects/PlaceableItemData")]
 public class PlaceableItemData : ItemData

@@ -14,6 +14,7 @@ public class PlacementManager : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform floorObjectsParent;
     [SerializeField] private Transform wallObjectsParent;
+    [SerializeField] private Transform equipmentParent;
     [SerializeField] private Tilemap previewTilemap;
     [SerializeField] TileBase previewTileRed;
     [SerializeField] TileBase previewTileGreen;
@@ -241,7 +242,7 @@ public class PlacementManager : MonoBehaviour
     }
 
     // LOGICS
-    // check
+    // wall
     private void TryPlaceOnWall()
     {
         if (!CanPlaceOnWall(currentOccupyingCells))
@@ -250,8 +251,32 @@ public class PlacementManager : MonoBehaviour
             return;
         }
 
-        PlaceObject();
+                if (!isMoving && !InventoryManager.Instance.TryConsumeItem(selectedItem)) return;
+        isMoving = false;
+
+        // Prefab生成
+        Vector3 worldPos = grid.GetCellCenterWorld(ConvertToVector3Int(currentCellPosition));
+        
+        GameObject newObj = Instantiate(selectedItem.PlacePrefab, worldPos, Quaternion.identity, wallObjectsParent);
+        PlacedObject placedObj = newObj.GetComponent<PlacedObject>();
+        if (placedObj == null)
+        {
+            Debug.LogError("PlacedObject component is missing.");
+            Destroy(newObj);
+            return;
+        }
+
+        placedObj.InitializeWall(selectedItem, currentRoom.RoomId, currentOccupyingCells);
+
+        // 壁の占有辞書に登録
+        currentRoom.GridState.PlaceWall(currentOccupyingCells, placedObj);
+
+        // end placing
+        //mainController.OnItemPlaced(selectedItem);
+        OnItemPlaced?.Invoke(selectedItem);
+        Debug.Log($"設置完了: {selectedItem.ItemName} / 残り在庫: {InventoryManager.Instance.GetCount(selectedItem)}");
     }
+    // floor
     private void TryPlaceOnFloor()
     {
         if (!isMoving && !InventoryManager.Instance.TryConsumeItem(selectedItem)) return;
@@ -260,7 +285,8 @@ public class PlacementManager : MonoBehaviour
         int floorY = currentRoom.Origin.y;
         Vector3 worldPos = grid.CellToWorld(new Vector3Int(currentRoom.Origin.x + currentFloorXs[0], floorY, 0));
 
-        GameObject newObj = Instantiate(selectedItem.PlacePrefab, worldPos, Quaternion.identity, floorObjectsParent);
+        Transform parent = selectedItem.Layer == FurnitureLayer.Equipment ? equipmentParent : floorObjectsParent;
+        GameObject newObj = Instantiate(selectedItem.PlacePrefab, worldPos, Quaternion.identity, parent);
         PlacedObject placedObj = newObj.GetComponent<PlacedObject>();
         if (placedObj == null) { Destroy(newObj); return; }
 
@@ -317,34 +343,6 @@ public class PlacementManager : MonoBehaviour
         return null;
     }*/
     
-    // EXECUTION
-    private void PlaceObject()
-    {
-        if (!isMoving && !InventoryManager.Instance.TryConsumeItem(selectedItem)) return;
-        isMoving = false;
-
-        // Prefab生成
-        Vector3 worldPos = grid.GetCellCenterWorld(ConvertToVector3Int(currentCellPosition));
-        
-        GameObject newObj = Instantiate(selectedItem.PlacePrefab, worldPos, Quaternion.identity, wallObjectsParent);
-        PlacedObject placedObj = newObj.GetComponent<PlacedObject>();
-        if (placedObj == null)
-        {
-            Debug.LogError("PlacedObject component is missing.");
-            Destroy(newObj);
-            return;
-        }
-
-        placedObj.InitializeWall(selectedItem, currentRoom.RoomId, currentOccupyingCells);
-
-        // 壁の占有辞書に登録
-        currentRoom.GridState.PlaceWall(currentOccupyingCells, placedObj);
-
-        // end placing
-        //mainController.OnItemPlaced(selectedItem);
-        OnItemPlaced?.Invoke(selectedItem);
-        Debug.Log($"設置完了: {selectedItem.ItemName} / 残り在庫: {InventoryManager.Instance.GetCount(selectedItem)}");
-    }
     /*private void RemoveObject(PlacedObject obj)
     {
         PlaceableItemData data = obj.ItemData;
