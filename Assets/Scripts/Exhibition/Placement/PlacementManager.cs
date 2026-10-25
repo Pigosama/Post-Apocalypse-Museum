@@ -258,7 +258,7 @@ public class PlacementManager : MonoBehaviour
         isMoving = false;
 
         int floorY = currentRoom.Origin.y;
-        Vector3 worldPos = grid.GetCellCenterWorld(new Vector3Int(currentRoom.Origin.x + currentFloorXs[0], floorY, 0));
+        Vector3 worldPos = grid.CellToWorld(new Vector3Int(currentRoom.Origin.x + currentFloorXs[0], floorY, 0));
 
         GameObject newObj = Instantiate(selectedItem.PlacePrefab, worldPos, Quaternion.identity, floorObjectsParent);
         PlacedObject placedObj = newObj.GetComponent<PlacedObject>();
