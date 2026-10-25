@@ -12,7 +12,8 @@ public class PlacementManager : MonoBehaviour
     [SerializeField] private Grid grid;
     [SerializeField] private Tilemap floorTilemap;
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private Transform placedObjectsParent;
+    [SerializeField] private Transform floorObjectsParent;
+    [SerializeField] private Transform wallObjectsParent;
     [SerializeField] private Tilemap previewTilemap;
     [SerializeField] TileBase previewTileRed;
     [SerializeField] TileBase previewTileGreen;
@@ -259,7 +260,7 @@ public class PlacementManager : MonoBehaviour
         int floorY = currentRoom.Origin.y;
         Vector3 worldPos = grid.GetCellCenterWorld(new Vector3Int(currentRoom.Origin.x + currentFloorXs[0], floorY, 0));
 
-        GameObject newObj = Instantiate(selectedItem.PlacePrefab, worldPos, Quaternion.identity, placedObjectsParent);
+        GameObject newObj = Instantiate(selectedItem.PlacePrefab, worldPos, Quaternion.identity, floorObjectsParent);
         PlacedObject placedObj = newObj.GetComponent<PlacedObject>();
         if (placedObj == null) { Destroy(newObj); return; }
 
@@ -325,7 +326,7 @@ public class PlacementManager : MonoBehaviour
         // Prefab生成
         Vector3 worldPos = grid.GetCellCenterWorld(ConvertToVector3Int(currentCellPosition));
         
-        GameObject newObj = Instantiate(selectedItem.PlacePrefab, worldPos, Quaternion.identity, placedObjectsParent);
+        GameObject newObj = Instantiate(selectedItem.PlacePrefab, worldPos, Quaternion.identity, wallObjectsParent);
         PlacedObject placedObj = newObj.GetComponent<PlacedObject>();
         if (placedObj == null)
         {
