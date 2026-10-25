@@ -9,6 +9,7 @@ public class FacilityLayoutBootstrapper : MonoBehaviour
     [SerializeField] private RoomTemplateData elevatorTemplate; // Elevatorをここにドラッグ
 
     private int nextRoomId = 0;
+    [SerializeField] private Transform roomParent; // 生成したRoomInstanceの親(整理用)
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class FacilityLayoutBootstrapper : MonoBehaviour
         }
 
         Vector3 worldPos = FacilityGridState.Instance.GridToWorld(origin);
-        var go = Instantiate(template.RoomPrefab, worldPos, Quaternion.identity);
+        var go = Instantiate(template.RoomPrefab, worldPos, Quaternion.identity, roomParent);
 
         var instance = go.GetComponent<RoomInstance>();
         instance.Initialize(nextRoomId++, template, origin);
