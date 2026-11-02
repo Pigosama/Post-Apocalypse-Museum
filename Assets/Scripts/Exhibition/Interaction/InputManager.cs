@@ -22,45 +22,63 @@ public class NormalModeInput : IInputMode
     public void OnExit() { }
     public void OnTick() { }
 
+    // 左クリック
     public void OnPrimaryAction(Vector2 worldPos, GameObject hit)
     {
-        var l = LayerSelectionManager.Instance.CurrentLayer;
-        switch (l)
+        // レイヤーチェック
+        LayerSelectionManager layerManager = LayerSelectionManager.Instance;
+        foreach (EditLayer layer in layerManager.GetEnabledLayersByPriority())
         {
-            case EditLayer.Entity:
-                SelectionManager.Instance.Select(hit);
-                break;
-            default:
-                SelectPlacedObjectAt(worldPos, l);
-                break;
+            if (layer == EditLayer.Entity)
+            {
+                if (IsEntityTarget(hit))
+                {
+                    SelectionManager.Instance.Select(hit);
+                    return;
+                }
+
+                continue;
+            }
+
+            PlacedObject placedObject = FindPlacedObjectAt(worldPos, layer, out RoomInstance room);
+            if (placedObject == null)
+                continue;
+
+            SelectionManager.Instance.SelectPlacedObject(placedObject, room);
+            return;
         }
+
+        SelectionManager.Instance.ClearSelection();
     }
+
+    private static bool IsEntityTarget(GameObject target)
+    {
+        return target != null
+            && (target.TryGetComponent<IVisitorEntity>(out _)
+                || target.TryGetComponent<IAnomalyEntity>(out _));
+    }
+
     public void OnSecondaryAction(Vector2 worldPos, GameObject hit) { }
     public void OnPointerMove(Vector2 worldPos, GameObject hover) { }
 
-    private void SelectPlacedObjectAt(Vector2 worldPos, EditLayer layer)
+    private PlacedObject FindPlacedObjectAt(Vector2 worldPos, EditLayer layer, out RoomInstance room)
     {
-        if(!FacilityGridState.Instance.TryGetRoomPosition(worldPos, out RoomPosition roomPos, out RoomInstance room))
+        if (!FacilityGridState.Instance.TryGetRoomPosition(worldPos, out RoomPosition roomPos, out room))
         {
-            SelectionManager.Instance.ClearSelection();
-            return;
+            room = null;
+            return null;
         }
 
         Vector2Int gridPos = FacilityGridState.Instance.WorldToGrid(worldPos);
         var state = room.GridState;
-        // マップ上のオブジェクトを探す
-        PlacedObject found = layer switch
+        // レイヤーに応じて適切なPlacedObjectを取得
+        return layer switch
         {
             EditLayer.Wall      => state.TryGetWallObject(gridPos, out var w) ? w : null,
             EditLayer.Floor     => state.TryGetFloorObject(roomPos.X, out var f) ? f : null,
             EditLayer.Equipment => state.TryGetEquipmentObject(roomPos.X, out var e) ? e : null,
             _ => null,
         };
-
-        if(found != null)
-            SelectionManager.Instance.SelectPlacedObject(found, room);
-        else
-            SelectionManager.Instance.ClearSelection();
     }
 }
 

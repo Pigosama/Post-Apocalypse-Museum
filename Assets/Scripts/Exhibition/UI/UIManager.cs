@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         buttonMove.onClick.AddListener(() => SelectionManager.Instance.RequestMoveSelected());
-    buttonRemove.onClick.AddListener(() => SelectionManager.Instance.RequestRemoveSelected());
+        buttonRemove.onClick.AddListener(() => SelectionManager.Instance.RequestRemoveSelected());
     }
 
     // SHOW PANELS
