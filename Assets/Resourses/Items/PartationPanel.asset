@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26ab8c4a999313a46b7bf169291bd18e, type: 3}
   m_Name: PartationPanel
   m_EditorClassIdentifier: Assembly-CSharp::PlaceableItemData
-  itemID: PartationPanel_Funiture
+  itemId: 
   itemName: "\u4ED5\u5207\u308A\u30D1\u30CD\u30EB"
   description: "\u5C55\u793A\u533A\u753B\u3092\u4ED5\u5207\u308B\u305F\u3081\u306E\u30D1\u30CD\u30EB"
-  placementSize:
-  - {x: 0, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
+  icon: {fileID: 0}
   maxStackSize: 999
-  itemIcon: {fileID: -1051276612676977032, guid: b94beca89fae24540b0dc3fa2fd3c400, type: 3}
-  itemSprite: {fileID: -1051276612676977032, guid: b94beca89fae24540b0dc3fa2fd3c400, type: 3}
+  layer: 0
+  floorWidth: 2
+  wallFootprint:
+  - {x: 0, y: 0}
   placePrefab: {fileID: 4853362622435616033, guid: 8f83607f7efd0754699101860361eddc, type: 3}
+  itemSprite: {fileID: 21300000, guid: b94beca89fae24540b0dc3fa2fd3c400, type: 3}

@@ -22,3 +22,5 @@ MonoBehaviour:
   itemIcon: {fileID: -7679944087948563305, guid: 274344cb6c5b39c4491631958ec2c463, type: 3}
   itemSprite: {fileID: -7679944087948563305, guid: 274344cb6c5b39c4491631958ec2c463, type: 3}
   placePrefab: {fileID: 4853362622435616033, guid: 8f83607f7efd0754699101860361eddc, type: 3}
+  layer: 0
+  floorWidth: 2
