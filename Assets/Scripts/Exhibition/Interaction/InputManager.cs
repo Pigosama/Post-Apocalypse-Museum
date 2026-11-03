@@ -43,7 +43,6 @@ public class NormalModeInput : IInputMode
             PlacedObject placedObject = FindPlacedObjectAt(worldPos, layer, out RoomInstance room);
             if (placedObject == null)
                 continue;
-
             SelectionManager.Instance.SelectPlacedObject(placedObject, room);
             return;
         }
@@ -188,6 +187,7 @@ public class InputManager : MonoBehaviour
         currentMode?.OnExit();
         currentMode = newMode;
         currentMode.OnEnter();
+        Debug.Log($"Input mode changed to: {newMode.GetType().Name}");
     }
 
     public void ReturnToDefaultMode() => SetMode(defaultMode);
