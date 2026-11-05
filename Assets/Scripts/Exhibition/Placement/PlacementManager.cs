@@ -155,9 +155,9 @@ public class PlacementManager : MonoBehaviour
         Destroy(obj.gameObject);
         isMoving = true;
 
-        IInputMode mode = moveItemData.Layer == FurnitureLayer.Floor
-            ? new FloorPlacementInput(moveItemData)
-            : new WallPlacementInput(moveItemData);
+        IInputMode mode = moveItemData.Layer == FurnitureLayer.Wall
+            ? new WallPlacementInput(moveItemData)
+            : new FloorPlacementInput(moveItemData);
         InputManager.Instance.SetMode(mode);
     }
     public void CancelMoveIfPending()
@@ -285,6 +285,7 @@ public class PlacementManager : MonoBehaviour
         int floorY = currentRoom.Origin.y;
         Vector3 worldPos = grid.CellToWorld(new Vector3Int(currentRoom.Origin.x + currentFloorXs[0], floorY, 0));
 
+        // floorとEquipmentレイヤー判定
         Transform parent = selectedItem.Layer == FurnitureLayer.Equipment ? equipmentParent : floorObjectsParent;
         GameObject newObj = Instantiate(selectedItem.PlacePrefab, worldPos, Quaternion.identity, parent);
         PlacedObject placedObj = newObj.GetComponent<PlacedObject>();

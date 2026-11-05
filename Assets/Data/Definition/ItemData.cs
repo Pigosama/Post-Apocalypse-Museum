@@ -1,7 +1,7 @@
 // Assets/Scripts/Data/Definition/ItemData.cs
 using UnityEngine;
 
-public enum ItemCategory { Furniture, Equipment, Consumable }
+public enum ItemCategory { Placable, Consumable }
 
 public abstract class ItemData : ScriptableObject
 {

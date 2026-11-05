@@ -13,20 +13,17 @@ public class InventoryController : MonoBehaviour
 
         switch (item.Category)
         {
-            case ItemCategory.Furniture:
+            case ItemCategory.Placable:
                 var furniture = (PlaceableItemData)item;
-                /*IInputMode mode = furniture.Layer == FurnitureLayer.Floor
-                    ? new FloorPlacementInput(furniture)
-                    : new WallPlacementInput(furniture);*/
-                //InputManager.Instance.SetMode(mode);
-                break;
-
-            case ItemCategory.Equipment:
-                //InputManager.Instance.SetMode(new EquipmentPlacementInput((EquipmentData)item));
+                // wall || (floor & equipment)
+                IInputMode mode = furniture.Layer == FurnitureLayer.Wall
+                    ? new WallPlacementInput(furniture)
+                    : new FloorPlacementInput(furniture);
+                InputManager.Instance.SetMode(mode);
                 break;
 
             case ItemCategory.Consumable:
-                //InputManager.Instance.SetMode(new ConsumableUseInput((ConsumableItemData)item));
+                InputManager.Instance.SetMode(new ConsumableUseInput((ConsumableItemData)item));
                 break;
         }
 

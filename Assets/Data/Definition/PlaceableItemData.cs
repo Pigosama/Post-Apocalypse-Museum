@@ -13,7 +13,7 @@ public class PlaceableItemData : ItemData
     [SerializeField] private GameObject placePrefab;
     [SerializeField] private Sprite itemSprite;
 
-    public override ItemCategory Category => ItemCategory.Furniture;
+    public override ItemCategory Category => ItemCategory.Placable;
     public FurnitureLayer Layer => layer;
     public int FloorWidth => floorWidth;
     public List<Vector2Int> WallFootprint => wallFootprint;
@@ -25,14 +25,14 @@ public class PlaceableItemData : ItemData
     {
         List<Vector3Int> footprint = new();
 
-        if (layer == FurnitureLayer.Floor)
+        if (layer != FurnitureLayer.Wall)
         {
             for (int x = 0; x < floorWidth; x++)
             {
                 footprint.Add(new Vector3Int(x, 0, 0));
             }
         }
-        else if (layer == FurnitureLayer.Wall)
+        else
         {
             foreach (Vector2Int offset in wallFootprint)
             {

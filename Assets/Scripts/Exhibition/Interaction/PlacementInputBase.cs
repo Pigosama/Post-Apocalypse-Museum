@@ -34,6 +34,7 @@ public class WallPlacementInput : PlacementInputBase
     public override void OnPrimaryAction(Vector2 worldPos, GameObject hit)
         => PlacementManager.Instance.TryPlaceWallAtCurrentCell();
 }
+// Floor & Equipment Placement Input
 public class FloorPlacementInput : PlacementInputBase
 {
     public FloorPlacementInput(PlaceableItemData data) : base(data) { }

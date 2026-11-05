@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "Scriptable Objects/EquipmentData")]
 public class EquipmentData : ItemData
 {
-    public override ItemCategory Category => ItemCategory.Equipment;
+    public override ItemCategory Category => ItemCategory.Placable;
     public string equipmentId;
     public string equipmentName;
     public int floorWidth; // 占有幅(床家具と同じ1D想定でよいか要確認)
